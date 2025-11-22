@@ -1,9 +1,15 @@
 import random
+import os
+import sys
 
-with open("words.txt") as f:
-    data = f.readlines()
-    for index,word in enumerate(data):
-        data[index] = word.strip()
+if os.path.exists("words.txt"):
+    with open("words.txt") as f:
+        data = f.readlines()
+        for index,word in enumerate(data):
+            data[index] = word.strip()
+else:
+    print("vocabulary file not found. Please run wordle.py first.")
+    sys.exit()
 
 print("""=========================================
            WELCOME TO WORDLE           
