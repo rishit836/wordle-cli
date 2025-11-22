@@ -69,6 +69,7 @@ while True:
         continue
     else:
         # checking if the entered word is valid vocab or not
+        guess = guess.lower()
         if guess in data:
             if guess.lower() == word.lower():
                 print("You guessed the word!!")
@@ -84,7 +85,6 @@ while True:
                     word= random.choice(data)
                     continue
             chances -=1
-
             for index,letter in enumerate(guess):
                 if letter == word[index]:
                     print("",letter.upper(),end=" ")
@@ -94,6 +94,10 @@ while True:
                     print(" _ ",end=" ")
             print()
             print("You have",chances,"guesses left!")
+
+        else:
+            print("ENTER A VALID WORD!")
+            print(guess,"not in vocabulary.")
 
 
 
