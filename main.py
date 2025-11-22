@@ -63,7 +63,7 @@ while True:
         continue
     else:
         # checking if the entered word is valid vocab or not
-        if guess in data or guess not in data:
+        if guess in data:
             if guess.lower() == word.lower():
                 print("You guessed the word!!")
                 print("WORDLE SCORE:",chances,"/5")
