@@ -42,25 +42,52 @@ start = input("Press ENTER to continue...")
 
 chances = 5
 word = random.choice(data)
-while chances>0:
+num_guesses = 0
+while True:
+    if chances ==0:
+        print("Oh no! you ran out of chances")
+        print("THE WORD WAS:",word.upper())
+        print("you guessed", num_guesses, "guesses!!")
 
-    print(word)
-    guess = input("Guess a Word: ")
+        question = input("Do you want to play again?(Y/N)")
+        if question.lower() == "y":
+            word = random.choice(data)
+            num_guesses =0
+            chances=5
+            continue
+
+        else:break
+    guess = input("Enter Your Guess: ")
     if len(guess) != 5:
-        print("Enter a 5 letter word!")
+        print("Enter a 5 letter word.",guess,"is a",len(guess),"letter word not 5!!")
         continue
     else:
         # checking if the entered word is valid vocab or not
-        # if guess in data:
-        chances -=1
+        if guess in data or guess not in data:
+            if guess.lower() == word.lower():
+                print("You guessed the word!!")
+                print("WORDLE SCORE:",chances,"/5")
+                num_guesses += 1
+                question = input("Do you want to exit? (Y/N)")
+                if question.upper() == "Y":
+                    print("Thank you for Playing!")
+                    print("you guessed",num_guesses,"guesses!!")
+                    print("Made by Rishit Sharma - 25BAI10375")
+                    break
+                else:
+                    word= random.choice(data)
+                    continue
+            chances -=1
 
-        for index,letter in enumerate(guess):
-            if letter == word[index]:
-                print(letter,end=" ")
-            elif letter in word[index:]:
-                print(letter.upper(),end=" ")
-            else:
-                print("_",end=" ")
-        print()
+            for index,letter in enumerate(guess):
+                if letter == word[index]:
+                    print("",letter.upper(),end=" ")
+                elif letter in word[index:]:
+                    print("",letter.lower(),end=" ")
+                else:
+                    print(" _ ",end=" ")
+            print()
+            print("You have",chances,"guesses left!")
+
 
 
